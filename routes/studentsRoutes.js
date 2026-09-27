@@ -1,13 +1,13 @@
 const express = require("express");
-const router = express.router();
+const router = express.Router();
 const students = require("../data/studentsData.js");
 
-
+                  //  Get data
 router.get("/", (req, res) => {
     res.status(200).json(students)
 });
 
-
+                   
 router.get("/:id", (req, res) => {
     const id = Number(req.params.id);
     if (isNaN(id)) {
@@ -22,10 +22,11 @@ router.get("/:id", (req, res) => {
     }
     res.status(200).json({
         success: true,
-        message: "Successfully Fetch "
+        message: "Successfully Fetch ",
+        data:student
     })
 })
-
+                      //Create new data
 router.post("/", (req, res) => {
     const { name, course } = req.body;
 
@@ -43,7 +44,7 @@ router.post("/", (req, res) => {
 
     res.status(201).json(newStudent);
 });
-
+                           //Update data
 router.put("/:id", (req, res) => {
     const id = Number(req.params.id);
     if (isNaN(id)) {
@@ -70,7 +71,7 @@ router.put("/:id", (req, res) => {
     }
     res.status(200).json(student);
 });
-
+                                //Delete data
 router.delete("/:id", (req, res) => {
     const id = Number(req.params.id);
     if (isNaN(id)) {
